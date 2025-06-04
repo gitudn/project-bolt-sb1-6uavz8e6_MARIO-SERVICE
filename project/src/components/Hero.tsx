@@ -11,7 +11,7 @@ const Hero: React.FC = () => {
   };
 
   const handleWhatsAppClick = () => {
-    window.open('https://wa.me/+393456789012', '_blank');
+    window.open('https://wa.me/+393206611519', '_blank');
   };
 
   return (
@@ -20,16 +20,16 @@ const Hero: React.FC = () => {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ 
-          backgroundImage: 'url(/hero-bg.jpg)',
-          backgroundPosition: 'center 25%'
+          backgroundImage: 'url(https://images.unsplash.com/photo-1621905251189-08b45d6a269e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80)',
+          backgroundPosition: 'center',
         }}
       >
-        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black/60"></div>
       </div>
 
       {/* Content */}
       <div className="relative z-10 h-full flex flex-col justify-center items-center text-white text-center px-4">
-        <h1 className="text-5xl md:text-6xl font-bold mb-4">
+        <h1 className="text-5xl md:text-6xl font-bold mb-4 font-montserrat">
           {t('hero.title')}
         </h1>
         <p className="text-xl md:text-2xl mb-8 max-w-2xl">
@@ -38,10 +38,10 @@ const Hero: React.FC = () => {
         <div className="flex flex-col sm:flex-row gap-4">
           <button
             onClick={handleWhatsAppClick}
-            className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg text-lg font-semibold transition-colors flex items-center justify-center"
+            className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg text-lg font-semibold transition-colors flex items-center justify-center gap-2"
           >
             <svg
-              className="w-6 h-6 mr-2"
+              className="w-6 h-6"
               fill="currentColor"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
