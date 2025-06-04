@@ -53,12 +53,12 @@ const Header: React.FC = () => {
             <Phone size={18} />
             {t('nav.contact')}
           </a>
-          <LanguageSwitcher />
+          <LanguageSwitcher isScrolled={isScrolled} />
         </nav>
 
         {/* Mobile Menu Button */}
         <div className="md:hidden flex items-center gap-4">
-          <LanguageSwitcher />
+          <LanguageSwitcher isScrolled={isScrolled} />
           <button 
             className="p-2"
             onClick={toggleMenu}
