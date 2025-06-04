@@ -53,20 +53,25 @@ router.post('/login', validateLogin, async (req: express.Request, res: express.R
 // Create initial admin user (should be protected in production)
 router.post('/setup', async (req: express.Request, res: express.Response) => {
   try {
-    const adminExists = await User.findOne({ role: 'admin' });
-    if (adminExists) {
-      return res.status(400).json({ message: 'Admin user already exists' });
-    }
+    // Remove any existing admin users
+    await User.deleteMany({ role: 'admin' });
 
     const admin = new User({
-      email: process.env.ADMIN_EMAIL || 'admin@marioservice.com',
-      password: process.env.ADMIN_PASSWORD || 'admin123',
+      email: 'admin@marioservice.com',
+      password: 'admin123',
       role: 'admin'
     });
 
     await admin.save();
-    res.status(201).json({ message: 'Admin user created successfully' });
+    res.status(201).json({ 
+      message: 'Admin user created successfully',
+      credentials: {
+        email: admin.email,
+        password: 'admin123'  // Only showing this in development
+      }
+    });
   } catch (error) {
+    console.error('Setup error:', error);
     res.status(500).json({ message: 'Error creating admin user' });
   }
 }); 

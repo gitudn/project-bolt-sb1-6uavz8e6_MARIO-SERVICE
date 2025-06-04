@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, Check } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { submitQuote } from '../services/api';
 
 interface FormData {
   name: string;
@@ -9,6 +10,10 @@ interface FormData {
   service: string;
   message: string;
   privacy: boolean;
+}
+
+interface FormErrors extends Partial<FormData> {
+  submit?: string;
 }
 
 const ContactForm: React.FC = () => {
@@ -22,7 +27,7 @@ const ContactForm: React.FC = () => {
     privacy: false
   });
   
-  const [errors, setErrors] = useState<Partial<FormData>>({});
+  const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -82,7 +87,7 @@ const ContactForm: React.FC = () => {
   };
 
   const validateForm = (): boolean => {
-    const newErrors: Partial<FormData> = {};
+    const newErrors: FormErrors = {};
     
     if (!formData.name.trim()) {
       newErrors.name = t('contact.form.errors.name');
@@ -112,15 +117,17 @@ const ContactForm: React.FC = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (validateForm()) {
       setIsSubmitting(true);
       
-      // Simulate form submission
-      setTimeout(() => {
-        setIsSubmitting(false);
+      try {
+        // Submit the quote using the API
+        const { privacy, ...quoteData } = formData;
+        await submitQuote(quoteData);
+        
         setIsSubmitted(true);
         setFormData({
           name: '',
@@ -135,7 +142,14 @@ const ContactForm: React.FC = () => {
         setTimeout(() => {
           setIsSubmitted(false);
         }, 5000);
-      }, 1500);
+      } catch (error: any) {
+        setErrors(prev => ({
+          ...prev,
+          submit: error.message || t('contact.form.errors.submit')
+        }));
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
 
@@ -296,6 +310,12 @@ const ContactForm: React.FC = () => {
                   <p className="text-red-500 text-sm mt-1">{errors.privacy}</p>
                 )}
               </div>
+
+              {errors.submit && (
+                <div className="mb-6">
+                  <p className="text-red-500 text-sm">{errors.submit}</p>
+                </div>
+              )}
               
               <button
                 type="submit"
