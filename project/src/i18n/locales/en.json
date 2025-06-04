@@ -1,0 +1,90 @@
+{
+  "nav": {
+    "services": "Services",
+    "gallery": "Gallery",
+    "about": "About Us",
+    "contact": "Contact Us"
+  },
+  "hero": {
+    "title": "MARIO SERVICE",
+    "subtitle": "Maintenance & Repair of Plumbing Systems, Shutters, Locks",
+    "whatsapp": "Contact us on WhatsApp",
+    "quote": "Request Free Quote"
+  },
+  "services": {
+    "title": "Our Services",
+    "plumbing": {
+      "title": "PLUMBING MAINTENANCE",
+      "description": "Emergency repairs, professional installations, and sanitary replacements. We intervene quickly to solve any plumbing problem."
+    },
+    "shutters": {
+      "title": "SHUTTER REPAIR",
+      "description": "Maintenance of motorized shutters, replacement of damaged components, and installation of new wiring for optimal operation."
+    },
+    "locks": {
+      "title": "LOCKS & SECURITY",
+      "description": "Emergency openings, installation of high-security cylinders, and armoring services to protect your home or office."
+    }
+  },
+  "gallery": {
+    "title": "Our Work",
+    "categories": {
+      "plumbing": "Plumbing",
+      "shutters": "Shutters",
+      "locks": "Locks"
+    }
+  },
+  "about": {
+    "title": "About Us",
+    "description": "We operate in Santa Maria di Sala and the province with over 20 years of experience in the sector. Our mission is to offer quick and effective solutions for any problem related to plumbing systems, shutters, and locks.",
+    "mission": "We stand out for our professionalism, quick response time, and ability to provide customized solutions based on specific customer needs.",
+    "stats": {
+      "clients": "Satisfied Clients",
+      "experience": "Years of Experience",
+      "areas": "Areas Served"
+    }
+  },
+  "contact": {
+    "title": "Request a Quote",
+    "form": {
+      "name": "Full Name",
+      "namePlaceholder": "John Smith",
+      "phone": "Phone",
+      "email": "Email",
+      "emailPlaceholder": "example@email.com",
+      "service": "Service",
+      "selectService": "Select a service",
+      "message": "Message",
+      "messagePlaceholder": "Describe your problem...",
+      "privacy": "I consent to the processing of personal data pursuant to GDPR 2016/679",
+      "submit": "Send Request",
+      "sending": "Sending...",
+      "success": "Thank you for your request!",
+      "successMessage": "We have received your message. We will contact you soon to provide you with a free quote.",
+      "errors": {
+        "name": "Name is required",
+        "phone": "Phone is required",
+        "phoneInvalid": "Please enter a valid phone number",
+        "email": "Email is required",
+        "emailInvalid": "Please enter a valid email address",
+        "service": "Please select a service",
+        "privacy": "You must accept the privacy policy"
+      }
+    }
+  },
+  "reviews": {
+    "title": "Customer Reviews"
+  },
+  "footer": {
+    "description": "Professionalism and reliability for the maintenance and repair of plumbing systems, shutters, and locks.",
+    "contacts": "Contacts",
+    "hours": {
+      "title": "Hours",
+      "weekdays": "Monday - Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday",
+      "closed": "Closed",
+      "emergency": "24/7 emergency service available"
+    }
+  }
+}

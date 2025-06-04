@@ -1,0 +1,90 @@
+{
+  "nav": {
+    "services": "Servizi",
+    "gallery": "Galleria",
+    "about": "Chi Siamo",
+    "contact": "Contattaci"
+  },
+  "hero": {
+    "title": "MARIO SERVICE",
+    "subtitle": "Manutenzione & Riparazione Impianti Idraulici, Tapparelle, Serrature",
+    "whatsapp": "Contattaci su WhatsApp",
+    "quote": "Richiedi Preventivo Gratuito"
+  },
+  "services": {
+    "title": "I Nostri Servizi",
+    "plumbing": {
+      "title": "MANUTENZIONE IMPIANTI IDRAULICI",
+      "description": "Riparazioni urgenti, installazioni professionali e sostituzioni di sanitari. Interveniamo rapidamente per risolvere qualsiasi problema idraulico."
+    },
+    "shutters": {
+      "title": "RIPARAZIONE TAPPARELLE",
+      "description": "Manutenzione di tapparelle motorizzate, sostituzione di componenti danneggiati e installazione di nuovi cablaggi per un funzionamento ottimale."
+    },
+    "locks": {
+      "title": "SERRATURE & SICUREZZA",
+      "description": "Aperture di emergenza, installazione di cilindri ad alta sicurezza e servizi di blindatura per proteggere la tua casa o il tuo ufficio."
+    }
+  },
+  "gallery": {
+    "title": "I Nostri Interventi",
+    "categories": {
+      "plumbing": "Idraulica",
+      "shutters": "Tapparelle",
+      "locks": "Serrature"
+    }
+  },
+  "about": {
+    "title": "Chi Siamo",
+    "description": "Operiamo a Santa Maria di Sala e provincia con oltre 20 anni di esperienza nel settore. La nostra missione è offrire soluzioni rapide ed efficaci per qualsiasi problema relativo a impianti idraulici, tapparelle e serrature.",
+    "mission": "Ci distinguiamo per la professionalità, la rapidità d'intervento e la capacità di fornire soluzioni personalizzate in base alle specifiche esigenze del cliente.",
+    "stats": {
+      "clients": "Clienti Soddisfatti",
+      "experience": "Anni di Esperienza",
+      "areas": "Comuni Serviti"
+    }
+  },
+  "contact": {
+    "title": "Richiedi un Preventivo",
+    "form": {
+      "name": "Nome Completo",
+      "namePlaceholder": "Mario Rossi",
+      "phone": "Telefono",
+      "email": "Email",
+      "emailPlaceholder": "esempio@email.com",
+      "service": "Servizio",
+      "selectService": "Seleziona un servizio",
+      "message": "Messaggio",
+      "messagePlaceholder": "Descrivici il tuo problema...",
+      "privacy": "Acconsento al trattamento dei dati personali ai sensi del GDPR 2016/679",
+      "submit": "Invia Richiesta",
+      "sending": "Invio in corso...",
+      "success": "Grazie per la tua richiesta!",
+      "successMessage": "Abbiamo ricevuto il tuo messaggio. Ti contatteremo al più presto per fornirti un preventivo gratuito.",
+      "errors": {
+        "name": "Il nome è obbligatorio",
+        "phone": "Il telefono è obbligatorio",
+        "phoneInvalid": "Inserisci un numero di telefono valido",
+        "email": "L'email è obbligatoria",
+        "emailInvalid": "Inserisci un indirizzo email valido",
+        "service": "Seleziona un servizio",
+        "privacy": "Devi accettare la privacy policy"
+      }
+    }
+  },
+  "reviews": {
+    "title": "Recensioni dei Clienti"
+  },
+  "footer": {
+    "description": "Professionalità e affidabilità per la manutenzione e riparazione di impianti idraulici, tapparelle e serrature.",
+    "contacts": "Contatti",
+    "hours": {
+      "title": "Orari",
+      "weekdays": "Lunedì - Venerdì",
+      "saturday": "Sabato",
+      "sunday": "Domenica",
+      "closed": "Chiuso",
+      "emergency": "Servizio di emergenza disponibile 24/7"
+    }
+  }
+}
