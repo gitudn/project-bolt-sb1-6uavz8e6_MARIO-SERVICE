@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000/api';
+const API_URL = 'http://localhost:5000/api';
 
 const api = axios.create({
   baseURL: API_URL,
@@ -43,9 +43,14 @@ export const submitQuote = async (formData: {
   email: string;
   service: string;
   message: string;
+  privacy: boolean;
 }) => {
   try {
-    const response = await api.post('/quotes', formData);
+    const { privacy, ...rest } = formData;
+    const response = await api.post('/quotes', {
+      ...rest,
+      privacy_consent: privacy ? 'allowed' : 'not allowed'
+    });
     return response.data;
   } catch (error: any) {
     throw new Error(error.message || 'Error submitting quote');

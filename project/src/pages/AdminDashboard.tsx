@@ -8,6 +8,7 @@ interface Quote {
   phone: string;
   service: string;
   message: string;
+  privacy_consent: 'allowed' | 'not allowed';
   status: 'pending' | 'contacted' | 'completed' | 'cancelled';
   createdAt: string;
 }
@@ -18,53 +19,32 @@ const AdminDashboard: React.FC = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
+    const loadQuotes = async () => {
+      try {
+        const data = await fetchQuotes();
+        setQuotes(data);
+      } catch (err: any) {
+        setError(err.message || 'Error fetching quotes');
+      } finally {
+        setLoading(false);
+      }
+    };
+
     loadQuotes();
   }, []);
 
-  const loadQuotes = async () => {
-    try {
-      const data = await fetchQuotes();
-      setQuotes(data);
-    } catch (err: any) {
-      setError(err.message || 'Failed to load quotes');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const getStatusColor = (status: Quote['status']) => {
-    switch (status) {
-      case 'pending':
-        return 'bg-yellow-100 text-yellow-800';
-      case 'contacted':
-        return 'bg-blue-100 text-blue-800';
-      case 'completed':
-        return 'bg-green-100 text-green-800';
-      case 'cancelled':
-        return 'bg-red-100 text-red-800';
-      default:
-        return 'bg-gray-100 text-gray-800';
-    }
-  };
-
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 p-4">
-        <div className="max-w-7xl mx-auto">
-          <p className="text-center">Loading quotes...</p>
-        </div>
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-xl">Loading...</div>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-50 p-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="bg-red-50 p-4 rounded-md">
-            <p className="text-red-700">{error}</p>
-          </div>
-        </div>
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-xl text-red-600">{error}</div>
       </div>
     );
   }
@@ -89,6 +69,9 @@ const AdminDashboard: React.FC = () => {
                           Service
                         </th>
                         <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          Privacy Consent
+                        </th>
+                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                           Status
                         </th>
                         <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -100,16 +83,40 @@ const AdminDashboard: React.FC = () => {
                       {quotes.map((quote) => (
                         <tr key={quote._id}>
                           <td className="px-6 py-4 whitespace-nowrap">
-                            <div className="text-sm font-medium text-gray-900">{quote.name}</div>
-                            <div className="text-sm text-gray-500">{quote.email}</div>
-                            <div className="text-sm text-gray-500">{quote.phone}</div>
+                            <div className="flex items-center">
+                              <div>
+                                <div className="text-sm font-medium text-gray-900">
+                                  {quote.name}
+                                </div>
+                                <div className="text-sm text-gray-500">
+                                  {quote.email}
+                                </div>
+                                <div className="text-sm text-gray-500">
+                                  {quote.phone}
+                                </div>
+                              </div>
+                            </div>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap">
                             <div className="text-sm text-gray-900">{quote.service}</div>
-                            <div className="text-sm text-gray-500 truncate max-w-xs">{quote.message}</div>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap">
-                            <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusColor(quote.status)}`}>
+                            <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                              quote.privacy_consent === 'allowed' 
+                                ? 'bg-green-100 text-green-800' 
+                                : 'bg-red-100 text-red-800'
+                            }`}>
+                              {quote.privacy_consent}
+                            </span>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                              quote.status === 'completed' 
+                                ? 'bg-green-100 text-green-800' 
+                                : quote.status === 'pending'
+                                ? 'bg-yellow-100 text-yellow-800'
+                                : 'bg-gray-100 text-gray-800'
+                            }`}>
                               {quote.status}
                             </span>
                           </td>

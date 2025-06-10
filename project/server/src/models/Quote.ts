@@ -6,6 +6,7 @@ export interface IQuote extends mongoose.Document {
   email: string;
   service: string;
   message?: string;
+  privacy_consent: string;
   status: 'pending' | 'contacted' | 'completed' | 'cancelled';
   createdAt: Date;
   updatedAt: Date;
@@ -36,6 +37,12 @@ const quoteSchema = new mongoose.Schema({
   message: {
     type: String,
     trim: true
+  },
+  privacy_consent: {
+    type: String,
+    required: true,
+    enum: ['allowed', 'not allowed'],
+    default: 'not allowed'
   },
   status: {
     type: String,
