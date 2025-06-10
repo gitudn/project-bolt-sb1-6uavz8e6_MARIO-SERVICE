@@ -43,7 +43,7 @@ const Gallery: React.FC = () => {
     },
     {
       id: 5,
-      src: "https://images.pexels.com/photos/4114905/pexels-photo-4114905.jpeg",
+      src: "https://www.br1infissi.it/blog/wp-content/uploads/2019/11/004B-3.jpg",
       alt: "Installazione tapparelle elettriche",
       category: t('gallery.categories.shutters')
     },
