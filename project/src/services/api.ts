@@ -66,10 +66,48 @@ export const login = async (credentials: { email: string; password: string }) =>
   }
 };
 
-export const fetchQuotes = async () => {
+interface FetchQuotesParams {
+  status?: string;
+  service?: string;
+  searchQuery?: string;
+  page?: number;
+  limit?: number;
+  dateRange?: string;
+}
+
+export const fetchQuotes = async (params: FetchQuotesParams = {}) => {
   try {
-    const response = await api.get('/quotes');
-    return response.data;
+    const queryParams = new URLSearchParams();
+    
+    // Only add parameters that are defined and not 'Any'
+    if (params.status && params.status !== 'Any') {
+      queryParams.append('status', params.status);
+    }
+    if (params.service && params.service !== 'Any') {
+      queryParams.append('service', params.service);
+    }
+    if (params.searchQuery) {
+      queryParams.append('search', params.searchQuery);
+    }
+    if (params.page) {
+      queryParams.append('page', params.page.toString());
+    }
+    if (params.limit) {
+      queryParams.append('limit', params.limit.toString());
+    }
+    if (params.dateRange) {
+      queryParams.append('dateRange', params.dateRange);
+    }
+
+    const queryString = queryParams.toString();
+    const response = await api.get(`/quotes${queryString ? `?${queryString}` : ''}`);
+    
+    return {
+      quotes: response.data.quotes || response.data,
+      total: response.data.total || response.data.length,
+      page: response.data.page || 1,
+      totalPages: response.data.totalPages || 1
+    };
   } catch (error: any) {
     throw new Error(error.message || 'Error fetching quotes');
   }
@@ -81,5 +119,32 @@ export const updateQuoteStatus = async (quoteId: string, status: string) => {
     return response.data;
   } catch (error: any) {
     throw new Error(error.message || 'Error updating quote status');
+  }
+};
+
+export const deleteQuote = async (quoteId: string) => {
+  try {
+    const response = await api.delete(`/quotes/${quoteId}`);
+    return response.data;
+  } catch (error: any) {
+    throw new Error(error.message || 'Error deleting quote');
+  }
+};
+
+export const bulkDeleteQuotes = async (quoteIds: string[]) => {
+  try {
+    const response = await api.delete('/quotes/bulk', { data: { ids: quoteIds } });
+    return response.data;
+  } catch (error: any) {
+    throw new Error(error.message || 'Error deleting quotes');
+  }
+};
+
+export const bulkUpdateQuoteStatus = async (quoteIds: string[], status: string) => {
+  try {
+    const response = await api.patch('/quotes/bulk/status', { ids: quoteIds, status });
+    return response.data;
+  } catch (error: any) {
+    throw new Error(error.message || 'Error updating quotes status');
   }
 }; 

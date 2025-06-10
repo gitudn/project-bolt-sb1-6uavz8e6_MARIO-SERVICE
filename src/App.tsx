@@ -35,45 +35,24 @@ const App: React.FC = () => {
     <Router>
       <Routes>
         {/* Admin Routes */}
-        <Route
-          path="/admin/login"
-          element={
-            <AdminLayout>
-              <AdminLogin />
-            </AdminLayout>
-          }
-        />
-        <Route
-          path="/admin/dashboard"
+        <Route path="/admin/login" element={<AdminLayout><AdminLogin /></AdminLayout>} />
+        <Route 
+          path="/admin/dashboard" 
           element={
             <ProtectedRoute>
               <AdminLayout>
                 <AdminDashboard />
               </AdminLayout>
             </ProtectedRoute>
-          }
+          } 
         />
 
         {/* Public Routes */}
-        <Route
-          path="/"
-          element={
-            <PublicLayout>
-              <Home />
-            </PublicLayout>
-          }
-        />
-        <Route
-          path="/quote"
-          element={
-            <PublicLayout>
-              <QuoteRequest />
-            </PublicLayout>
-          }
-        />
+        <Route path="/" element={<PublicLayout><Home /></PublicLayout>} />
+        <Route path="/quote" element={<PublicLayout><QuoteRequest /></PublicLayout>} />
       </Routes>
     </Router>
   );
 };
 
-export default App;
+export default App; 
